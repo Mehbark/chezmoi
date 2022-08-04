@@ -1,0 +1,13 @@
+complete -k --exclusive -c hsnav -a "cm content-mine"      -d "My content"
+complete -k --exclusive -c hsnav -a "co content-others"    -d "Others' content"
+complete -k --exclusive -c hsnav -a "coo content-official" -d "Official content"
+complete -k --exclusive -c hsnav -a "if ideas-fantroll"    -d "Fantroll ideas"
+complete -k --exclusive -c hsnav -a "c content"            -d "General content"
+complete -k --exclusive -c hsnav -a "i ideas"              -d "General ideas"
+
+complete -k --exclusive -c /home/mbk/hs/hsnav -a "cm content-mine"      -d "My content"
+complete -k --exclusive -c /home/mbk/hs/hsnav -a "co content-others"    -d "Others' content"
+complete -k --exclusive -c /home/mbk/hs/hsnav -a "coo content-official" -d "Official content"
+complete -k --exclusive -c /home/mbk/hs/hsnav -a "if ideas-fantroll"    -d "Fantroll ideas"
+complete -k --exclusive -c /home/mbk/hs/hsnav -a "c content"            -d "General content"
+complete -k --exclusive -c /home/mbk/hs/hsnav -a "i ideas"              -d "General ideas"

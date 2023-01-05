@@ -22,12 +22,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'jlanzarotta/bufexplorer'
 
 Plug 'vimwiki/vimwiki'
-Plug 'tools-life/taskwiki'
+" Plug 'tools-life/taskwiki'
 
 ""Editing
 Plug 'tpope/vim-commentary'
 "Plug 'mrtazz/DoxygenToolkit.vim'
 Plug 'tpope/vim-surround'
+
+Plug 'godlygeek/tabular'
 
 Plug 'kana/vim-operator-user'
 "Plug 'rhysd/vim-clang-format'
@@ -70,27 +72,13 @@ Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'nickeb96/fish.vim'
 
-Plug 'godlygeek/tabular'
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+
+" Fun
+Plug 'eandrju/cellular-automaton.nvim'
+
 " Add plugins to &runtimepath
 call plug#end()
-
-let g:nvim_tree_respect_buf_cwd = 1
-lua << EOF
-require("nvim-tree").setup({
-  update_cwd = true,
-  update_focused_file = {
-    enable = true,
-    update_cwd = true
-  },
-})
-
-require("project_nvim").setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-}
-
-require('telescope').load_extension('projects')
-EOF
 
 "===== Telescope ====="
 nnoremap <leader>t :Telescope<cr>
@@ -154,7 +142,7 @@ let g:airline#extensions#whitespace#checks = [ 'indent' ]
 map <F4> :A<CR>
 
 " remove trailing white spaces when saving
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 
 " OCaml settings
 filetype indent on
@@ -196,6 +184,9 @@ let g:rustfmt_command = "rustfmt"
 au BufNewFile,BufRead *.rs setlocal colorcolumn=100
 let g:ycm_rust_src_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 
+"===== C ====="
+autocmd FileType c set autoindent noexpandtab tabstop=8 shiftwidth=8
+" autocmd FileType c execute "silent! CocDisable"
 
 "===== Nvim Behaviour ====="
 " Changes regular vim behaviours
@@ -317,28 +308,43 @@ set signcolumn=yes
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+" " Use <c-space> to trigger completion.
+" inoremap <silent><expr> <C-space> coc#refresh()
+
+" " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" " position. Coc only does snippet and additional edit on confirm.
+" " if has('patch8.1.1068')
+"   " Use `complete_info` if your (Neo)Vim version supports it.
+"   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" " else
+" "   imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" " endif
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <>
+"       \ coc#pum#visible() ? coc#pum#next(1) :
+"       \ CheckBackspace() ? "\<Tab>" :
+"       \ coc#refresh()
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+" argh argh please work 
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -368,6 +374,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 xmap <leader>f  <Plug>(coc-fix)
+let g:coc_node_path="/usr/bin/node"
 
 augroup mygroup
   autocmd!
@@ -410,7 +417,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 let g:airline#extensions#coc#enabled = 1
-" Add (Neo)Vim's native statusline support.
+" Add (Neo)Vims native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
@@ -433,6 +440,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Resume latest coc list.
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+au filetype vimwiki silent! iunmap <buffer> <Tab>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " / Coc settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -452,3 +460,24 @@ let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
 let g:pear_tree_map_special_keys = 1
 
+set shell=/usr/bin/dash
+
+lua << EOF
+require("nvim-tree").setup({
+  respect_buf_cwd = true,
+  update_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_cwd = true
+  },
+})
+
+require("lsp_lines").setup()
+vim.diagnostic.config({virtual_text = false})
+
+require("project_nvim").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+}
+
+require('telescope').load_extension('projects')

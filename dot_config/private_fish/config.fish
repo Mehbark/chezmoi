@@ -98,6 +98,9 @@ export TROLLNAMES_PATH="/home/mbk/hs/content/mine/trollname/6-letter-english-wor
 set fish_greeting
 
 if status is-interactive
+    if set -q ASCIINEMA_REC
+        return
+    end
     if test $PWD = "/home/mbk/hs"
         homestartup
     else

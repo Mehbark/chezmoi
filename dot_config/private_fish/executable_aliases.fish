@@ -18,9 +18,11 @@ alias vt='nvim ~/vimwiki/Tasks.wiki'
 alias vwo="firefox ~/vimwiki_html/index.html"
 alias vwr="nvim -c "VimwikiAll2HTML" -c "q" ~/vimwiki/index.wiki"
 alias nv='neovide'
+# alias hx='helix'
 alias lv="~/.local/bin/lvim"
-alias e='emacs &'
+alias e='emacs'
 alias ce='code .'
+alias se="serve ."
 alias co='code --reuse-window'
 alias ok='okular'
 alias ko='kitty .'
@@ -65,7 +67,7 @@ alias g="git"
 alias gcs="batcat -p -l bash /home/mehbark/main/misc/gitCliCheatSheet.js"
 alias gco="git checkout"
 alias gb="git branch"
-alias gc="git commit -a -m"
+alias gc="git commit -m"
 alias gst="git status"
 alias ga="git add"
 alias gp="git push"
@@ -115,3 +117,4 @@ end
 function filelink
     echo "file://$(realpath $argv)"
 end
+alias xpy '~/Aims/rust/x.py'

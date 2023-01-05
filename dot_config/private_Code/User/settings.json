@@ -1,6 +1,5 @@
 {
     "workbench.editor.enablePreviewFromQuickOpen": false,
-    "workbench.colorTheme": "Gruvbox Material Dark",
     "rust-analyzer.checkOnSave.command": "clippy",
     "workbench.editor.enablePreview": false,
     "[rust]": {
@@ -13,6 +12,13 @@
     "[makefile]": {
         "editor.insertSpaces": false
     },
+    "[c]": {
+        "editor.insertSpaces": false,
+        "editor.tabSize": 8,
+        "editor.useTabStops": true,
+        "editor.formatOnSave": false
+    },
+    "editor.renderWhitespace": "selection",
     "[java]": {
         "editor.suggest.snippetsPreventQuickSuggestions": false
     },
@@ -106,6 +112,10 @@
             "commands": ["editor.action.marker.prevInFiles"]
         }
     ],
+    "vim.useSystemClipboard": true,
+    "vim.easymotion": true,
+    "vim.highlightedyank.enable": true,
+    "vim.smartRelativeLine": true,
     "[jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -113,7 +123,6 @@
     "editor.fontLigatures": true,
     "terminal.integrated.fontFamily": "Iosevka",
     "git.confirmSync": false,
-    "vim.useSystemClipboard": true,
     "terminal.integrated.scrollback": 100000,
     "go.useLanguageServer": true,
     "[javascript]": {
@@ -139,8 +148,8 @@
     },
     "terminal.integrated.tabs.enabled": true,
     "terminal.integrated.defaultProfile.linux": "fish",
-    "workbench.preferredDarkColorTheme": "GitHub Dark",
-    "workbench.preferredLightColorTheme": "GitHub Light",
+    //"workbench.preferredDarkColorTheme": "GitHub Dark",
+    //"workbench.preferredLightColorTheme": "GitHub Light",
     "editor.tabSize": 4,
     "editor.cursorStyle": "line",
     "editor.lineNumbers": "on",
@@ -171,10 +180,8 @@
     "editor.bracketPairColorization.enabled": true,
     "security.workspace.trust.untrustedFiles": "open",
     "editor.inlayHints.enabled": "offUnlessPressed",
-    "vim.easymotion": true,
     "rust-analyzer.lens.run": false,
     "rust-analyzer.lens.debug": false,
-    "vim.highlightedyank.enable": true,
     "rust-analyzer.lens.implementations": false,
     "editor.cursorSmoothCaretAnimation": true,
     "editor.cursorBlinking": "solid",
@@ -190,9 +197,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.fontSize": 16,
-    "settingsSync.ignoredExtensions": [
-    
-    ],
+    "settingsSync.ignoredExtensions": [],
     "syntax.highlightLanguages": [
         "c",
         "cpp",
@@ -209,7 +214,6 @@
         "lua"
     ],
     "editor.suggest.localityBonus": true,
-    "vim.smartRelativeLine": true,
     // "rust-analyzer.inlayHints.chainingHints.enable": false,
     // "rust-analyzer.inlayHints.parameterHints.enable": false,
     // "rust-analyzer.inlayHints.typeHints.enable": false,
@@ -222,8 +226,6 @@
     },
     "prettier.arrowParens": "avoid",
     "prettier.tabWidth": 4,
-    "C_Cpp.clang_format_fallbackStyle": "Google",
-    "dotnetAcquisitionExtension.existingDotnetPath": [],
     "rust-analyzer.lens.enable": false,
     "workbench.startupEditor": "none",
     "workbench.editorAssociations": {
@@ -231,11 +233,28 @@
     },
     "gruvboxMaterial.italicComments": false,
     "rust-analyzer.inlayHints.maxLength": null,
-    "editor.minimap.enabled": false,
     "rust-analyzer.debug.openDebugPane": true,
     "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "always",
-    "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "skip_trivial",
+    "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "always",
     "rust-analyzer.inlayHints.lifetimeElisionHints.useParameterNames": true,
     "rust-analyzer.inlayHints.reborrowHints.enable": "always",
-    "rust-analyzer.checkOnSave.extraArgs": ["--", "-W", "clippy::pedantic"]
+    "rust-analyzer.checkOnSave.extraArgs": ["--", "-W", "clippy::pedantic"],
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "remote.extensionKind": {
+        "pub.name": ["ui"]
+    },
+    "docker.commands.attach": "${config:docker.dockerPath} exec -it ${containerId} ${shellCommand}",
+    "C_Cpp.clang_format_fallbackStyle": "WebKit",
+    "editor.stickyScroll.enabled": true,
+    "workbench.colorTheme": "One Dark Pro",
+    "files.associations": {
+        "*.h": "c"
+    },
+    "editor.minimap.showSlider": "always",
+    "haskell.formattingProvider": "stylish-haskell",
+    "editor.minimap.enabled": false,
+    "[haskell]": {
+        "editor.defaultFormatter": "haskell.haskell"
+    },
+    "haskell.manageHLS": "GHCup"
 }

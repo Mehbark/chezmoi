@@ -3,12 +3,15 @@
     "rust-analyzer.checkOnSave.command": "clippy",
     "workbench.editor.enablePreview": false,
     "[rust]": {
-        "editor.semanticHighlighting.enabled": true
+        "editor.semanticHighlighting.enabled": true,
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
     },
     "[latex]": {
         "editor.defaultFormatter": "nickfode.latex-formatter"
     },
-    "[python]": {},
+    "[python]": {
+        "editor.formatOnType": true
+    },
     "[makefile]": {
         "editor.insertSpaces": false
     },
@@ -23,7 +26,7 @@
         "editor.suggest.snippetsPreventQuickSuggestions": false
     },
     "editor.formatOnSave": true,
-    "editor.acceptSuggestionOnCommitCharacter": true,
+    "editor.acceptSuggestionOnCommitCharacter": false,
     "git.autofetch": true,
     "files.eol": "\n",
     "vim.handleKeys": {
@@ -110,6 +113,88 @@
         {
             "before": ["<c-k>"],
             "commands": ["editor.action.marker.prevInFiles"]
+        },
+        {
+            "before": ["<leader>", "p", "c"],
+            "commands": ["picat.run.document"]
+        },
+        // clojure
+        {
+            "before": ["<leader>", "s", "h"],
+            "commands": ["paredit.slurpSexpBackward"]
+        },
+        {
+            "before": ["<leader>", "s", "l"],
+            "commands": ["paredit.slurpSexpForward"]
+        },
+        {
+            "before": ["<leader>", "s", "w", "p"],
+            "commands": ["paredit.wrapAroundParens"]
+        },
+        {
+            "before": ["<leader>", "s", "w", "b"],
+            "commands": ["paredit.wrapAroundSquare"]
+        },
+        {
+            "before": ["<leader>", "s", "w", "c"],
+            "commands": ["paredit.wrapAroundCurly"]
+        },
+        {
+            "before": ["<leader>", "s", "w", "p"],
+            "commands": ["paredit.wrapAroundParens"]
+        },
+        {
+            "before": ["<leader>", "b", "h"],
+            "commands": ["paredit.barfSexpBackward"]
+        },
+        {
+            "before": ["<leader>", "b", "l"],
+            "commands": ["paredit.barfSexpForward"]
+        },
+        {
+            "before": ["<leader>", "s", "t"],
+            "commands": ["paredit.transpose"]
+        },
+        {
+            "before": ["<leader>", "s", "t"],
+            "commands": ["paredit.transpose"]
+        },
+        {
+            "before": ["<leader>", "s", "e"],
+            "commands": ["calva.evaluateCurrentTopLevelForm"]
+        },
+        {
+            "before": ["<leader>", "s", "s"],
+            "commands": ["calva.evaluateSelection"]
+        },
+        {
+            "before": ["<leader>", "s", "f"],
+            "commands": ["calva.sendCurrentFormToOutputWindow"]
+        },
+        {
+            "before": ["<leader>", "s", "o"],
+            "commands": ["calva.showOutputWindow"]
+        },
+        // idris
+        {
+            "before": ["<leader>", "i", "l"],
+            "commands": ["idris.make-lemma"]
+        },
+        {
+            "before": ["<leader>", "i", "f", "h"],
+            "commands": ["idris.proof-search"]
+        },
+        {
+            "before": ["<leader>", "i", "c", "s"],
+            "commands": ["idris.case-split"]
+        },
+        {
+            "before": ["<leader>", "i", "t", "c"],
+            "commands": ["idris.typecheck"]
+        },
+        {
+            "before": ["<leader>", "i", "m"],
+            "commands": ["idris.add-clause"]
         }
     ],
     "vim.useSystemClipboard": true,
@@ -120,19 +205,21 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.fontFamily": "JetBrainsMono Nerd Font",
+    // "editor.fontFamily": "IntelOne Mono",
+    // "editor.fontFamily": "CMU Serif",
+    // "editor.fontFamily": "JuliaMono",
     "editor.fontLigatures": true,
-    "terminal.integrated.fontFamily": "Iosevka",
     "git.confirmSync": false,
     "terminal.integrated.scrollback": 100000,
     "go.useLanguageServer": true,
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.defaultFormatter": null,
         "editor.formatOnSave": true
     },
     "terminal.integrated.commandsToSkipShell": ["-workbench.action.quickOpen"],
     "[typescript]": {
         "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "denoland.vscode-deno"
     },
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -176,14 +263,13 @@
         "plaintext": false,
         "markdown": false
     },
-    "terminal.integrated.fontSize": 16,
     "editor.bracketPairColorization.enabled": true,
     "security.workspace.trust.untrustedFiles": "open",
     "editor.inlayHints.enabled": "offUnlessPressed",
     "rust-analyzer.lens.run": false,
     "rust-analyzer.lens.debug": false,
     "rust-analyzer.lens.implementations": false,
-    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "solid",
     "workbench.iconTheme": "gruvbox-material-icon-theme",
     "window.titleBarStyle": "custom",
@@ -246,9 +332,10 @@
     "docker.commands.attach": "${config:docker.dockerPath} exec -it ${containerId} ${shellCommand}",
     "C_Cpp.clang_format_fallbackStyle": "WebKit",
     "editor.stickyScroll.enabled": true,
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "One Dark Pro Darker",
     "files.associations": {
-        "*.h": "c"
+        "*.h": "c",
+        "*.pl": "prolog"
     },
     "editor.minimap.showSlider": "always",
     "haskell.formattingProvider": "stylish-haskell",
@@ -256,5 +343,33 @@
     "[haskell]": {
         "editor.defaultFormatter": "haskell.haskell"
     },
-    "haskell.manageHLS": "GHCup"
+    "agdaMode.connection.agdaLanguageServer": true,
+    "calva.highlight.matchedBracketStyle": {},
+    "calva.paredit.defaultKeyMap": "original",
+    "editor.autoIndent": "advanced",
+    "calva.prettyPrintingOptions": {
+        "printEngine": "pprint",
+        "enabled": true,
+        "width": 120,
+        "maxLength": 50
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "errorLens.excludeBySource": ["eslint(eqeqeq)", "ts(2551)"],
+    "terminal.integrated.fontSize": 15,
+    "dafny.verificationTimeLimit": 3600,
+    "dafny.verificationVirtualCores": 0,
+    "editor.defaultFormatter": "denoland.vscode-deno",
+    "haskell.manageHLS": "GHCup",
+    "haskell.ghcupExecutablePath": "/home/mbk/.ghcup/bin/ghcup",
+    "haskell.plugin.tactics.config.auto_gas": 8,
+    "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
+    "ocaml.server.extendedHover": true,
+    "idris.warnPartial": true,
+    "idris.numbersOfContinuousTypechecking": 50,
+    "zig.zigPath": "",
+    "debug.internalConsoleOptions": "neverOpen",
+    "zig.zls.enabled": true,
+    "zig.zls.path": "/home/mbk/.config/Code/User/globalStorage/ziglang.vscode-zig/zls_install/zls"
 }

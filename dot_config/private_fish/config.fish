@@ -84,7 +84,7 @@ source ~/.config/fish/aliases.fish
 
 # . "$HOME/.cargo/env"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$HOME/.emacs.d/bin:$PATH:$HOME/.ghcup/bin:$HOME/.cabal/bin:$HOME/hs/bin"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$HOME/.emacs.d/bin:$PATH:$HOME/.ghcup/bin:$HOME/.cabal/bin:$HOME/hs/bin:$HOME/.cargo/bin:$HOME/.deno/bin:$HOME/Aims/curlfire"
 
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # setopt autocd
@@ -107,3 +107,8 @@ if status is-interactive
         fortune | cowsay
     end
 end
+
+export CHEZSCHEMELIBDIRS="/home/mbk/Aims/chez/thunderchez:/home/mbk/Aims/chez/thunderchez:/home/mbk/Aims/chez/chez-srfi:/home/mbk/Aims/chez/pfds"
+
+# opam configuration
+source /home/mbk/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

@@ -92,7 +92,7 @@ function speed-up --description "take arg 1, speed it up by arg 3 and output it 
     mencoder -o "$argv[2]" -speed "$argv[3]" -ovc lavc -oac lavc "$argv[1]"
 end
 
-alias doom='~/.emacs.d/bin/doom'
+alias doom='~/.config/emacs/bin/doom'
 alias pipers='pipes-rs'
 alias yt='yt-dlp'
 alias compile_and_serve="cargo run --quiet --release example_in example_out;cd example_out;serve;cd .."
@@ -118,3 +118,13 @@ function filelink
     echo "file://$(realpath $argv)"
 end
 alias xpy '~/Aims/rust/x.py'
+alias sbcl "rlwrap sbcl"
+alias guile "rlwrap guile"
+#alias clj 'clojure -Sdeps "{:deps {com.bhauman/rebel-readline {:mvn/version \"0.1.4\"} $args}}" -m rebel-readline.main'
+alias csi "rlwrap chicken-csi"
+
+# zig
+alias zb "zig build"
+alias zbr "zig build run"
+alias zbt "zig build test"
+
